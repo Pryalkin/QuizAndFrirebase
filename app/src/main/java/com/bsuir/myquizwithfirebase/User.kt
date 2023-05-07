@@ -1,4 +1,4 @@
-package com.bsuir.myquizwithfirebase.model
+package com.bsuir.myquizwithfirebase
 
 import com.google.firebase.database.IgnoreExtraProperties
 

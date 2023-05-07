@@ -1,8 +1,9 @@
 package com.bsuir.myquizwithfirebase
 
 import android.content.Intent
-import android.graphics.Color
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.os.StrictMode
 import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.View
@@ -15,13 +16,14 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bsuir.myquizwithfirebase.Result.Companion.result
 import com.bsuir.myquizwithfirebase.Result.Companion.username
 import com.bsuir.myquizwithfirebase.databinding.FragmentQuestionsBinding
-import com.bsuir.myquizwithfirebase.model.User
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import java.io.IOException
+import java.net.URL
 import kotlin.properties.Delegates
 
 
@@ -53,18 +55,18 @@ class QuestionsFragment : Fragment() {
                 result.visibility = View.GONE
                 methodGroupForQuestions()
             } else {
-                buttonHelp.visibility = View.GONE
-                buttonHelpFriend.visibility = View.GONE
                 answers.visibility = View.GONE
                 questionText.visibility = View.GONE
-                requireActivity().findViewById<View>(R.id.timer).visibility = View.GONE
+                val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+                StrictMode.setThreadPolicy(policy)
+                try {
+                    val url = URL("https://img.freepik.com/premium-vector/marathon-finish-group-sprinter-sportsmen-runner-on-home-stretch-joggers-winner-cross-finish-line_547662-626.jpg")
+                    val image = BitmapFactory.decodeStream(url.openConnection().getInputStream())
+                    binding.imageQuestion.setImageBitmap(image)
+                } catch (e: IOException) {
+                    System.out.println(e)
+                }
                 methodForTotalFragment()
-            }
-            if (btnHelp == 3) {
-                buttonHelp.visibility = View.GONE
-            }
-            if (btnHelpFriend == 1) {
-                buttonHelpFriend.visibility = View.GONE
             }
         }
     }
@@ -91,56 +93,6 @@ class QuestionsFragment : Fragment() {
     private fun methodGroupForQuestions() {
         getQuestion()
         listenerForAnswerButtons()
-        listenerPerButton50by50()
-        listenerForFriendHelpButton()
-    }
-
-    private fun listenerForFriendHelpButton() {
-        binding.buttonHelpFriend.setOnClickListener{
-            when (correctAnswer.toInt()) {
-                1 -> binding.button1.setTextColor(Color.GREEN)
-                2 -> binding.button2.setTextColor(Color.GREEN)
-                3 -> binding.button3.setTextColor(Color.GREEN)
-                4 -> binding.button4.setTextColor(Color.GREEN)
-            }
-            binding.buttonHelpFriend.visibility = View.INVISIBLE
-            btnHelpFriend++
-        }
-    }
-
-    private fun listenerPerButton50by50() {
-        binding.buttonHelp.setOnClickListener{
-                if (btnHelp < 3) {
-                    val numberOfAttempts = IntArray(3)
-                    run {
-                        var i = 0
-                        while (i < numberOfAttempts.size) {
-                            var flag = false
-                            val randomButton = (Math.random() * 4 + 1).toInt()
-                            for (y in numberOfAttempts.indices) {
-                                if (numberOfAttempts[y] == randomButton) {
-                                    i--
-                                    flag = true
-                                }
-                            }
-                            if (!flag) numberOfAttempts[i] = randomButton
-                            i++
-                        }
-                    }
-                    var i = 0
-                    for (z in numberOfAttempts.indices) {
-                        if (correctAnswer.toInt() != numberOfAttempts[z] && i < 2) {
-                            if (numberOfAttempts[z] == 1) binding.button1.visibility = View.INVISIBLE
-                            if (numberOfAttempts[z] == 2) binding.button2.visibility = View.INVISIBLE
-                            if (numberOfAttempts[z] == 3) binding.button3.visibility = View.INVISIBLE
-                            if (numberOfAttempts[z] == 4) binding.button4.visibility = View.INVISIBLE
-                            i++
-                        }
-                    }
-                    btnHelp++
-                }
-                binding.buttonHelp.visibility = View.INVISIBLE
-            }
     }
 
     private fun getQuestion() {
@@ -153,6 +105,17 @@ class QuestionsFragment : Fragment() {
                 button3.text =  it.child("answer3").value.toString()
                 button4.text =  it.child("answer4").value.toString()
                 correctAnswer = it.child("correctAnswer").value.toString()
+
+                val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+                StrictMode.setThreadPolicy(policy)
+                try {
+                    val url = URL(it.child("url").value.toString())
+                    val image = BitmapFactory.decodeStream(url.openConnection().getInputStream())
+                    binding.imageQuestion.setImageBitmap(image)
+                } catch (e: IOException) {
+                    System.out.println(e)
+                }
+
             }
         }
     }
@@ -194,15 +157,12 @@ class QuestionsFragment : Fragment() {
 
     private fun goToANewPage() {
         val pager = requireActivity().findViewById<ViewPager2>(R.id.pager)
-        val pageAdapter: FragmentStateAdapter = MyAdapter(requireActivity())
+        val pageAdapter: FragmentStateAdapter = QuestionsAdapter(requireActivity())
         pager.setCurrentItem(++pageNumber, false)
         pager.adapter = pageAdapter
     }
 
         companion object {
-            private var btnHelp = 0
-            private var btnHelpFriend = 0
-
             @JvmStatic
         fun newInstance(page: Int): QuestionsFragment {
             val fragment: QuestionsFragment = QuestionsFragment()

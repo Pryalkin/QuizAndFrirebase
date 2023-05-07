@@ -12,7 +12,7 @@ class QuestionsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_questions)
 
         val pager = findViewById<ViewPager2>(R.id.pager)
-        val pageAdapter: FragmentStateAdapter = MyAdapter(this)
+        val pageAdapter: FragmentStateAdapter = QuestionsAdapter(this)
         pager.isUserInputEnabled = false
         pager.adapter = pageAdapter
     }

@@ -12,6 +12,13 @@
         android:padding="25dp"
         android:orientation="vertical">
 
+        <ImageView
+            android:id="@+id/image_question"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            android:gravity="center"
+            tools:src="@tools:sample/avatars" />
+
         <TextView
             android:id="@+id/result"
             android:layout_gravity="center"
@@ -27,7 +34,7 @@
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Complete the game"
+            android:text="Сохранить результат"
             android:layout_marginBottom="15dp"/>
 
         <TextView
@@ -63,21 +70,6 @@
                 android:layout_height="wrap_content"
                 />
         </RadioGroup>
-        <Button
-            android:id="@+id/buttonHelp"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="50/50"
-            android:layout_marginBottom="15dp"/>
-        <Button
-            android:id="@+id/buttonHelpFriend"
-            android:layout_gravity="center|bottom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Help a friend"
-            android:layout_marginBottom="15dp"
-            />
 
     </LinearLayout>
 </ScrollView>

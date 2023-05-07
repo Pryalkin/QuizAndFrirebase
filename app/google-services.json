@@ -1,34 +1,33 @@
 {
   "project_info": {
-    "project_number": "283230275899",
-    "firebase_url": "https://my-qu1z-default-rtdb.firebaseio.com",
-    "project_id": "my-qu1z",
-    "storage_bucket": "my-qu1z.appspot.com"
+    "project_number": "128158284223",
+    "project_id": "bsuir-quiz-ce0c8",
+    "storage_bucket": "bsuir-quiz-ce0c8.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:283230275899:android:3becc14a45b696cb0acf1e",
+        "mobilesdk_app_id": "1:128158284223:android:9657790d81799c34d5090a",
         "android_client_info": {
           "package_name": "com.bsuir.myquizwithfirebase"
         }
       },
       "oauth_client": [
         {
-          "client_id": "283230275899-3ktvbqch8rn4l2i22htqt3g14u0phtq7.apps.googleusercontent.com",
+          "client_id": "128158284223-r46isv5ucvvk92o1k388svjg2bnh7oi0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAxgVuor652sajUtAzdQWntVSSVdkCUzKc"
+          "current_key": "AIzaSyCdzG8fZzsPO48asLONyLkFS2qGMVA08zs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "283230275899-3ktvbqch8rn4l2i22htqt3g14u0phtq7.apps.googleusercontent.com",
+              "client_id": "128158284223-r46isv5ucvvk92o1k388svjg2bnh7oi0.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

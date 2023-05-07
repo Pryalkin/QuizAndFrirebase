@@ -4,8 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bsuir.myquizwithfirebase.databinding.ItemUserBinding
-import com.bsuir.myquizwithfirebase.model.User
-import com.bumptech.glide.Glide
 
 class UserAdapter (
 ) : RecyclerView.Adapter<UserAdapter.UserViewHolder>(){
@@ -23,11 +21,7 @@ class UserAdapter (
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val user = users[position]
         with(holder.binding) {
-            userNameTextView.text = "Name: " + user.username
-            resultTextView.text = "Result: " + user.result.toString()
-            Glide.with(photoImageView.context)
-                .load(R.drawable.ic_person)
-                .into(photoImageView)
+            resultTextView.text = user.username + "     " + user.result.toString()
         }
     }
 

@@ -1,26 +1,42 @@
 package com.bsuir.myquizwithfirebase
 
+import android.R
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.bsuir.myquizwithfirebase.databinding.ActivityMainBinding
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        val navController = findNavController(R.id.fragment)
+        val pager = binding.pager
+        val pageAdapter: FragmentStateAdapter = PageAdapter(this)
+        pager.adapter = pageAdapter
 
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.firstFragment, R.id.secondFragment))
-        setupActionBarWithNavController(navController, appBarConfiguration)
+        val tabLayout: TabLayout = binding.tabLayout
+        val tabLayoutMediator = TabLayoutMediator(tabLayout, pager
+        ) { tab, position ->
+            when (position) {
+                0 -> {
+                    tab.text = "Меню"
+                }
+                1 -> {
+                    tab.text = "Рейтинг"
+                }
+            }
+        }
+        tabLayoutMediator.attach()
 
-        bottomNavigationView.setupWithNavController(navController)
     }
 
 }
