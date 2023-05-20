@@ -1,9 +1,10 @@
-package com.bsuir.myquizwithfirebase
+package com.bsuir.myquizwithfirebase.screens.questions
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.bsuir.myquizwithfirebase.R
 
 class QuestionsActivity : AppCompatActivity() {
 

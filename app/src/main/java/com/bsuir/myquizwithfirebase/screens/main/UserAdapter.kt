@@ -1,9 +1,12 @@
-package com.bsuir.myquizwithfirebase
+package com.bsuir.myquizwithfirebase.screens.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bsuir.myquizwithfirebase.R
 import com.bsuir.myquizwithfirebase.databinding.ItemUserBinding
+import com.bsuir.myquizwithfirebase.model.User
+import com.bumptech.glide.Glide
 
 class UserAdapter (
 ) : RecyclerView.Adapter<UserAdapter.UserViewHolder>(){
@@ -21,7 +24,11 @@ class UserAdapter (
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val user = users[position]
         with(holder.binding) {
-            resultTextView.text = user.username + "     " + user.result.toString()
+            userNameTextView.text = "Username: ${user.username}"
+            resultTextView.text = "Result: ${user.result}"
+            Glide.with(photoImageView.context)
+                .load(R.drawable.ic_person)
+                .into(photoImageView)
         }
     }
 

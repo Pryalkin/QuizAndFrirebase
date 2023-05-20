@@ -1,4 +1,4 @@
-package com.bsuir.myquizwithfirebase
+package com.bsuir.myquizwithfirebase.screens.main
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

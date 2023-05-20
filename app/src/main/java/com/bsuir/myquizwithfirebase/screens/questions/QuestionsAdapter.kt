@@ -1,8 +1,9 @@
-package com.bsuir.myquizwithfirebase
+package com.bsuir.myquizwithfirebase.screens.questions
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.bsuir.myquizwithfirebase.screens.questions.QuestionsFragment
 
 class QuestionsAdapter(fragmentActivity: FragmentActivity): FragmentStateAdapter(fragmentActivity) {
 

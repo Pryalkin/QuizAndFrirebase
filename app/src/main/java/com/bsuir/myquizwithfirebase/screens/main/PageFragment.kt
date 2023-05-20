@@ -1,4 +1,4 @@
-package com.bsuir.myquizwithfirebase
+package com.bsuir.myquizwithfirebase.screens.main
 
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bsuir.myquizwithfirebase.databinding.FragmentPageBinding
+import com.bsuir.myquizwithfirebase.model.User
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.gson.Gson
@@ -46,7 +47,7 @@ class PageFragment : Fragment() {
                 val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
                 StrictMode.setThreadPolicy(policy)
                 try {
-                    val url = URL("https://ggkjt.bsut.by/wp-content/uploads//2021/02/sova-1.jpg")
+                    val url = URL("https://www.drupal.org/files/project-images/quiz-image_0.jpg")
                     val image = BitmapFactory.decodeStream(url.openConnection().getInputStream())
                     binding.image.setImageBitmap(image)
                 } catch (e: IOException) {
